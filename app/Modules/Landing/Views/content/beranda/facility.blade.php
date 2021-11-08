@@ -54,14 +54,14 @@
             <div class="col-md-3 col-sm-6">
                 <div class="item">
                     <i class="icon icon-9"></i>
-                    <h3>Mini Bar</h3>
+                    <h3>Drink</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="item">
-                    <i class="icon icon-10"></i>
-                    <h3>Kitchen</h3>
+                    <i class="icon icon-11"></i>
+                    <h3>Breakfast</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
                 </div>
             </div>

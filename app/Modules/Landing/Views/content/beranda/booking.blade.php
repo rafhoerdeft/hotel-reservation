@@ -61,24 +61,19 @@
                         </div>
                         <div class="form-row">
                             <div class="control-group col-sm-6">
-                                <label>Adult</label>
-                                <select class="custom-select" id="adult" required="required"
-                                    data-validation-required-message="Please select one" />
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <label>Number of Rooms</label>
+                                <select class="custom-select" id="jml_kamar" name="jml_kamar" required="required"
+                                    data-validation-required-message="Please select one">
+                                    {{-- <option value="" selected>0</option> --}}
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group col-sm-6">
+                            {{-- <div class="control-group col-sm-6">
                                 <label>KId</label>
                                 <select class="custom-select" id="kid" required="required"
                                     data-validation-required-message="Please select one" />
@@ -95,7 +90,7 @@
                                 <option value="10">10</option>
                                 </select>
                                 <p class="help-block text-danger"></p>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="control-group">
                             <label>Special Request</label>

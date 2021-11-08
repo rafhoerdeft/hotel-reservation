@@ -1,0 +1,17 @@
+.datepicker table tr td.today,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover,
+.datepicker table tr td.today:hover {
+  background: #FF4961;
+  color: #ffffff;
+}
+
+.datepicker table tr td.active.active{
+  background-image: none !important;
+  background-color: #1E9FF2;
+}
+
+.datepicker td,
+.datepicker th {
+  padding: 5px 10px;
+}

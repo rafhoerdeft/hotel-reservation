@@ -27,6 +27,7 @@ defined('BASE') || define('BASE', $base);
 // -------------------------------------------------------------
 define("assets_url", "https://scn.magelangkab.go.id/backend/modernadmin/");
 define("assets_front", str_replace('\/', '/', BASE . "/theme/front/"));
+define("assets", str_replace('\/', '/', BASE . "/assets/"));
 
 define("views", "\App\Modules\/");
 

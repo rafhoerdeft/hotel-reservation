@@ -617,6 +617,14 @@ h6 {
     background-image: url(../img/icon/kitchen.png);
 }
 
+#amenities .icon.icon-11 {
+    background-image: url(../img/icon/breakfast-hover.png);
+}
+
+#amenities .icon.icon-11:hover {
+    background-image: url(../img/icon/breakfast.png);
+}
+
 /* ================================================= */
 /* ------------------ About Style ------------------ */
 /* ================================================= */
@@ -892,6 +900,14 @@ h6 {
     background-image: url(../img/icon/kitchen-hover.png);
 }
 
+#rooms .room-icon li.icon-11 {
+    background-image: url(../img/icon/breakfast.png);
+}
+
+#rooms .room-icon li.icon-11:hover {
+    background-image: url(../img/icon/breakfast-hover.png);
+}
+
 #rooms .room-link {
     position: relative;
     width: 100%;
@@ -911,6 +927,21 @@ h6 {
 }
 
 #rooms .room-link a:hover {
+    color: #222222;
+    background: #00CED1;
+}
+
+#rooms .room-link button {
+    display: inline-block;
+    padding: 7px 30px;
+    color: #00CED1;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 30px;
+    background: #222222;
+}
+
+#rooms .room-link button:hover {
     color: #222222;
     background: #00CED1;
 }
@@ -968,6 +999,16 @@ h6 {
 }
 
 .modal .port-slider-nav .slick-center img {
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.modal .photo-slide-nav .slick-track {
+    padding: 30px 0 15px 0;
+}
+
+.modal .photo-slide-nav .slick-center img {
     -ms-transform: scale(1.2);
     -webkit-transform: scale(1.2);
     transform: scale(1.2);

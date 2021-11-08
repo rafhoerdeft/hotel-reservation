@@ -14,7 +14,7 @@
     @include('content/beranda/room')
 
     <!-- Booking Content-->
-    @include('content/beranda/booking')
+    {{-- @include('content/beranda/booking') --}}
 
     <!-- Call Us Content -->
     @include('content/beranda/call')

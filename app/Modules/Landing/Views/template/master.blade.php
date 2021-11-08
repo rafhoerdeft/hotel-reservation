@@ -45,6 +45,12 @@
     <link href="{{ assets_front }}css/hover-style.css" rel="stylesheet">
     <link href="{{ assets_front }}css/style-new.css" rel="stylesheet">
 
+    <!-- Plugin CSS tambahan -->
+    @stack('css_plugin')
+
+    <!-- Style CSS tambahan -->
+    @stack('css_style')
+
     <style>
         .loadingers {
             text-align: center;
@@ -61,7 +67,6 @@
 
 <body>
 
-    @stack('loading')
     <div class="loadingers" id="loading-show">
         <div style="top: 40%; position: relative; z-index: 1100">
             @include('template.loading')
