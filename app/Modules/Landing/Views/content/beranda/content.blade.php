@@ -5,7 +5,7 @@
     @include('content/beranda/slider')
 
     <!-- Wellcome Content-->
-    @include('content/beranda/wellcome')
+    {{-- @include('content/beranda/wellcome') --}}
 
     <!-- Facility Content-->
     @include('content/beranda/facility')
@@ -20,3 +20,7 @@
     @include('content/beranda/call')
 
 @endsection
+
+@push('js_plugin')
+    <script src="{{ base_url('assets/js/scrl_link.js') }}"></script>
+@endpush

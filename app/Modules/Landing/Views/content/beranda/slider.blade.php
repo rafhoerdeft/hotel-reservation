@@ -1,178 +1,180 @@
-<!-- Header Bottom Start -->
-<div id="header-bottom">
-    <!-- Search Section Start -->
-    <div id="search" class="search-slider">
-        <div class="container">
-            <h1>Feel at Home When You're Away</h1>
-            <div class="form-row">
+<div id="homes">
+    <!-- Header Bottom Start -->
+    <div id="header-bottom">
+        <!-- Search Section Start -->
+        <div id="search" class="search-slider">
+            <div class="container">
+                <h1>Feel at Home When You're Away</h1>
+                <div class="form-row">
 
-                <div class="col-md-10 offset-md-1">
-                    <div class="form-row">
-                        <div class="col-md-8">
-                            <div class="input-daterange date-range form-row">
-                                <div class="control-group col-md-6">
-                                    <label>Check-In</label>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control checkin" id="checkin" name="checkin"
-                                                placeholder="DD/MM/YYYY" autocomplete="off"
-                                                value="{{ date('d/m/Y') }}" required />
-                                            <div class="input-group-append">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    <div class="col-md-10 offset-md-1">
+                        <div class="form-row">
+                            <div class="col-md-8">
+                                <div class="input-daterange date-range form-row">
+                                    <div class="control-group col-md-6">
+                                        <label>Check-In</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control checkin" id="checkin"
+                                                    name="checkin" placeholder="DD/MM/YYYY" autocomplete="off"
+                                                    value="{{ date('d/m/Y') }}" required />
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="control-group col-md-6">
-                                    <label>Check-Out</label>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control checkout" id="checkout"
-                                                name="checkout" placeholder="DD/MM/YYYY" autocomplete="off"
-                                                value="{{ date('d/m/Y', strtotime('+1 day')) }}" required />
-                                            <div class="input-group-append">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="control-group col-md-6">
+                                        <label>Check-Out</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control checkout" id="checkout"
+                                                    name="checkout" placeholder="DD/MM/YYYY" autocomplete="off"
+                                                    value="{{ date('d/m/Y', strtotime('+1 day')) }}" required />
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="control-group col-md-2">
-                            <div class="form-row">
-                                <div class="control-group col-md-12">
-                                    <label>Number of Rooms</label>
-                                    <select class="custom-select text-center" id="jml_kamar" name="jml_kamar"
-                                        required="required">
-                                        {{-- <option value="" selected>0</option> --}}
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                </div>
-                                {{-- <div class="control-group col-md-6">
+                            <div class="control-group col-md-2">
+                                <div class="form-row">
+                                    <div class="control-group col-md-12">
+                                        <label>People</label>
+                                        <select class="custom-select text-center" id="jml_orang" name="jml_orang"
+                                            required="required">
+                                            {{-- <option value="" selected>0</option> --}}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                        </select>
+                                    </div>
+                                    {{-- <div class="control-group col-md-6">
                                     <label>Kid</label>
                                     <input type="text" class="form-control" id="kid" name="kid" placeholder="0"
                                         autocomplete="off" style="border-radius: 30px" onkeypress="return inputAngka(event);"
                                         maxlength="2" />
                                 </div> --}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group col-md-2">
-                            <button class="btn btn-block">Search</button>
+                            <div class="control-group col-md-2">
+                                <button class="btn btn-block">Search</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Search Section End -->
+        <!-- Search Section End -->
 
-    <!-- Slider Section Start -->
-    <div id="headerSlider" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @foreach ($carousel as $index => $item)
-                <li data-target="#headerSlider" data-slide-to="{{ $index }}"
-                    class="{{ $index == 0 ? 'active' : '' }}"></li>
-            @endforeach
-        </ol>
-        <div class="carousel-inner">
-            @foreach ($carousel as $index => $item)
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <img src="{{ base_url('upload/slider/' . $item->file_carousel) }}" alt="Royal Hotel">
-                </div>
-            @endforeach
-        </div>
-
-        <a class="carousel-control-prev" href="#headerSlider" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#headerSlider" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <!-- Slider Section End -->
-</div>
-<!-- Header Bottom End -->
-
-<!-- Search Mobile View -->
-<div id="search" class="search-home">
-    <div class="container">
-        <div class="form-row">
-
-            <div class="col-md-6">
-                <div class="input-daterange date-range form-row">
-                    <div class="control-group col-md-6">
-                        <label>Check-In</label>
-                        <div class="form-group">
-                            <div class="input-group w-100">
-                                <input type="text" class="form-control checkin" id="checkin" name="checkin"
-                                    placeholder="DD/MM/YYYY" autocomplete="off" required />
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Slider Section Start -->
+        <div id="headerSlider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @foreach ($carousel as $index => $item)
+                    <li data-target="#headerSlider" data-slide-to="{{ $index }}"
+                        class="{{ $index == 0 ? 'active' : '' }}"></li>
+                @endforeach
+            </ol>
+            <div class="carousel-inner">
+                @foreach ($carousel as $index => $item)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <img src="{{ base_url('upload/slider/' . $item->file_carousel) }}" alt="Royal Hotel">
                     </div>
-
-                    <div class="control-group col-md-6">
-                        <label>Check-Out</label>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control checkout" id="checkout" name="checkout"
-                                    placeholder="DD/MM/YYYY" autocomplete="off" required />
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
-            <div class="control-group col-md-3">
-                <div class="form-row">
-                    <div class="control-group col-md-6">
-                        <label>Number of Rooms</label>
-                        <select class="custom-select text-center" id="jml_kamar" name="jml_kamar" required="required">
-                            {{-- <option value="" selected>0</option> --}}
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+            <a class="carousel-control-prev" href="#headerSlider" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#headerSlider" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <!-- Slider Section End -->
+    </div>
+    <!-- Header Bottom End -->
+
+    <!-- Search Mobile View -->
+    <div id="search" class="search-home">
+        <div class="container">
+            <div class="form-row">
+
+                <div class="col-md-6">
+                    <div class="input-daterange date-range form-row">
+                        <div class="control-group col-md-6">
+                            <label>Check-In</label>
+                            <div class="form-group">
+                                <div class="input-group w-100">
+                                    <input type="text" class="form-control checkin" id="checkin" name="checkin"
+                                        placeholder="DD/MM/YYYY" autocomplete="off" required />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group col-md-6">
+                            <label>Check-Out</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control checkout" id="checkout" name="checkout"
+                                        placeholder="DD/MM/YYYY" autocomplete="off" required />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {{-- <div class="control-group col-md-6">
+                </div>
+
+                <div class="control-group col-md-3">
+                    <div class="form-row">
+                        <div class="control-group col-md-6">
+                            <label>People</label>
+                            <select class="custom-select text-center" id="jml_orang" name="jml_orang"
+                                required="required">
+                                {{-- <option value="" selected>0</option> --}}
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        {{-- <div class="control-group col-md-6">
                         <label>Kid</label>
                         <input type="text" class="form-control" id="kid" name="kid" placeholder="0" autocomplete="off"
                             style="border-radius: 30px" onkeypress="return inputAngka(event);" maxlength="2" />
                     </div> --}}
+                    </div>
                 </div>
-            </div>
-            <div class="control-group col-md-3">
-                <button class="btn btn-block">Search</button>
+                <div class="control-group col-md-3">
+                    <button class="btn btn-block">Search</button>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Search Mobile View End -->
+
+    @include('content/beranda/wellcome')
 </div>
-<!-- Search Mobile View End -->
+
 
 @push('css_plugin')
     <link rel="stylesheet" href="{{ assets . 'vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' }}">
@@ -194,6 +196,7 @@
             format: 'dd/mm/yyyy',
             toggleActive: true,
             startDate: '0d',
+            endDate: '+8d', // maksimal 1 minggu
             // beforeShowDay: function(date) {
             //     if (date_checkout !== undefined) {
             //         if (date.getDate() === date_checkout.getDate() &&

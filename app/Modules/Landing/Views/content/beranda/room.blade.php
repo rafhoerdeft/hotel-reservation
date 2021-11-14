@@ -52,8 +52,11 @@
                                 <div class="room-link">
                                     <a href="javascript:void(0)" data-toggle="modal"
                                         data-target="#modal_detail_{{ $index }}">Read More</a>
-                                    <a href="javascript:void(0)" data-room="{{ $item->id_jenis_kamar }}"
-                                        onclick="modalBook(this)">Book Now</a>
+                                    <a href="javascript:void(0)" data-room="{{ $item->nama_jenis_kamar }}"
+                                        data-capacity="{{ $item->kapasitas }}"
+                                        data-select="{{ encode($item->id_jenis_kamar) }}"
+                                        onclick="modalBook(this)">Book
+                                        Now</a>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +136,9 @@
                                                 {{ $item->keterangan }}
                                             </p>
                                             <div class="modal-link">
-                                                <a href="javascript:void(0)" data-room="{{ $item->id_jenis_kamar }}"
+                                                <a href="javascript:void(0)" data-room="{{ $item->nama_jenis_kamar }}"
+                                                    data-capacity="{{ $item->kapasitas }}"
+                                                    data-select="{{ encode($item->id_jenis_kamar) }}"
                                                     data-dismiss="modal" onclick="modalBook(this)">Book Now</a>
                                             </div>
                                         </div>
@@ -173,6 +178,12 @@
         </div>
     </div>
 </div>
+
+{!! form_open(base_url('landing/booking/save'), 'name="result_form" class="form" id="result_form"') !!}
+<input type="hidden" name="result_type" id="result_type" value="">
+<input type="hidden" name="result_data" id="result_data" value="">
+<input type="hidden" name="input_data" id="input_data" value="">
+{!! form_close() !!}
 <!-- Room Section End -->
 
 @push('modal')
@@ -187,18 +198,15 @@
                     <div id="booking" style="padding: 0px;">
                         <div class="container">
                             <div class="section-header">
-                                <h2>Room Booking</h2>
-                                {{-- <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in mi libero. Quisque
-                                    convallis, enim
-                                    at venenatis tincidunt.
-                                </p> --}}
+                                <h4>Room Booking</h4>
+                                <h2 id="room_book">Standard Single</h2>
+                                <p>Capacity: <span id="kapasitas"></span> people </p>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="booking-form">
                                         <div id="success"></div>
-                                        {!! form_open(base_url('landing/booking'), 'name="sentMessage" class="form" id="bookingForm" novalidate="novalidate"') !!}
+                                        {!! form_open(base_url('landing/booking/token'), 'name="booking_form" class="form" id="booking_form" novalidate="novalidate"') !!}
                                         <div class="form-row">
                                             <div class="control-group col-sm-6">
                                                 <label>First Name</label>
@@ -253,7 +261,7 @@
                                                 </div>
 
                                                 <div class="control-group col-sm-6">
-                                                    <label>Check-In</label>
+                                                    <label>Check-Out</label>
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" id="checkout"
@@ -287,23 +295,37 @@
                                                 <p class="help-block text-danger"></p>
                                             </div>
 
+                                            <input type="hidden" name="jenis_kamar" id="jenis_kamar">
+                                            <input type="hidden" name="kamar" id="kamar">
+
                                             <div class="control-group col-sm-6">
+                                                <label>Check Available Rooms</label>
+                                                <div class="form-row">
+                                                    <div class="button col-sm-6">
+                                                        <button type="button" style="padding:5px; width:100%;"
+                                                            onclick="checkRooms()">Check</button>
+                                                    </div>
+                                                    <div class="col-sm-6 my-auto" id="alert_check_rooms"> </div>
+                                                </div>
+                                            </div>
+
+                                            {{-- <div class="control-group col-sm-6">
                                                 <label>Rooms</label>
                                                 <select class="custom-select" id="jenis_kamar" name="jenis_kamar"
                                                     required="required"
                                                     data-validation-required-message="Please select one">
-                                                    {{-- <option value="" selected>0</option> --}}
                                                     @foreach ($jenis_kamar as $item)
                                                         <option value="{{ $item->id_jenis_kamar }}">
                                                             {{ $item->nama_jenis_kamar }}</option>
                                                     @endforeach
                                                 </select>
                                                 <p class="help-block text-danger"></p>
-                                            </div>
+                                            </div> --}}
                                         </div>
 
-                                        <div class="button">
-                                            <button type="submit" id="bookingButton">
+                                        <hr>
+                                        <div class="button text-right">
+                                            <button type="button" id="book_submit" disabled>
                                                 Book Now
                                             </button>
                                         </div>
@@ -320,12 +342,179 @@
     <!-- Modal for Booking End -->
 @endpush
 
+@push('css_style')
+    <style>
+        .btn-disabled {
+            background: grey !important;
+            color: white !important;
+        }
+
+    </style>
+@endpush
+
+@push('js_plugin')
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ clientKeyMt() }}">
+    </script>
+@endpush
+
 @push('js_script')
     <script>
+        function clearBook() {
+            $('#modal_booking #booking_form #kamar').val('');
+            $('#modal_booking #booking_form #book_submit').attr('disabled', true);
+            $('#modal_booking #booking_form #book_submit').addClass('btn-disabled');
+        }
+
         function modalBook(data) {
             var room = $(data).data().room;
-            $('#modal_booking #jenis_kamar').val(room).change();
+            var capacity = $(data).data().capacity;
+            var select = $(data).data().select;
+            $('#modal_booking #booking_form')[0].reset();
+            // $('#modal_booking #jenis_kamar').val(room).change();
+            $('#modal_booking #jenis_kamar').val(select);
+            $('#modal_booking #room_book').html(room);
+            $('#modal_booking #kapasitas').html(capacity);
+            $('#modal_booking #alert_check_rooms').html('');
+            clearBook();
             $('#modal_booking').modal('show');
         }
+    </script>
+
+    <script>
+        function checkRooms() {
+            var room = $('#modal_booking #jenis_kamar').val();
+            var checkin = $('#modal_booking #checkin').val();
+            var checkout = $('#modal_booking #checkout').val();
+            var count = $('#modal_booking #jml_kamar').val();
+            if (checkin != '' && checkout != '') {
+                $.post("{{ base_url('landing/checkrm') }}", {
+                    room: room,
+                    checkin: checkin,
+                    checkout: checkout,
+                    count: count,
+                }, function(result) {
+                    var res = JSON.parse(result);
+                    if (res.response) {
+                        var data = res.data;
+                        if (data.count >= count) {
+                            $('#modal_booking #alert_check_rooms').html(
+                                '<h6 class="text-success">' +
+                                '<i class="fa fa-check-circle"></i>' +
+                                ' Rooms Available' +
+                                '</h6>'
+                            );
+                            $('#modal_booking #booking_form #kamar').val(data.rooms);
+                            $('#modal_booking #booking_form #book_submit').removeAttr('disabled');
+                            $('#modal_booking #booking_form #book_submit').removeClass('btn-disabled');
+                        } else {
+                            if (data.count > 0) {
+                                $('#modal_booking #alert_check_rooms').html(
+                                    '<h6 class="text-warning">' +
+                                    '<i class="fa fa-exclamation-circle"></i> ' +
+                                    data.count + ' Rooms Available' +
+                                    '</h6>'
+                                );
+                                clearBook();
+                            } else {
+                                $('#modal_booking #alert_check_rooms').html(
+                                    '<h6 class="text-danger">' +
+                                    '<i class="fa fa-times-circle"></i>' +
+                                    ' Rooms Not Available' +
+                                    '</h6>'
+                                );
+                                clearBook();
+                            }
+                        }
+                    } else {
+                        $('#modal_booking #alert_check_rooms').html(
+                            '<h6 class="text-danger">' +
+                            '<i class="fa fa-times-circle"></i>' +
+                            ' Rooms Not Available' +
+                            '</h6>'
+                        );
+                        clearBook();
+                    }
+                });
+            } else {
+                alert('Tentukan tanggal checkin & checkout dahulu!');
+            }
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('#book_submit').click(function(e) {
+            e.preventDefault();
+            var check_valid = $('#modal_booking #booking_form')[0].checkValidity();
+            var url = $('#modal_booking #booking_form')[0].action;
+            if (check_valid) {
+                // $('#modal_booking').modal('hide');
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "json",
+                    data: $('#modal_booking #booking_form').serialize(),
+                    cache: false,
+                    success: function(res) {
+                        if (res.response) {
+                            function changeResult(type, data) {
+                                // console.log('type = ' + type);
+                                // console.log('data = ' + JSON.stringify(data));
+                                // console.log('post = ' + JSON.stringify(res.data));
+                                $("#result_form #result_type").val(type);
+                                $("#result_form #result_data").val(JSON.stringify(data));
+                                $("#result_form #input_data").val(JSON.stringify(res.data));
+                            }
+
+                            snap.pay(res.token, {
+                                onSuccess: function(result) {
+                                    changeResult('success', result);
+                                    $("#result_form").submit();
+                                },
+                                onPending: function(result) {
+                                    changeResult('pending', result);
+                                    $("#result_form").submit();
+                                },
+                                onError: function(result) {
+                                    changeResult('error', result);
+                                    $("#result_form").submit();
+                                }
+                            });
+                        } else {
+                            alert(res.alert);
+                        }
+                    }
+                });
+            } else {
+                alert('Isi semua form!');
+            }
+        });
+    </script>
+
+    <script>
+        // matikan button submit saat ganti tanggal
+        date_range.on('changeDate', (e) => {
+            clearBook();
+        });
+
+        $('#jml_kamar').change(function() {
+            clearBook();
+        });
+    </script>
+
+    <script>
+        $("#booking_form input, #booking_form select").jqBootstrapValidation({
+            preventSubmit: true,
+            submitError: function($form, event, errors) {},
+            // submitSuccess: function($form, event) {
+            //     event.preventDefault();
+
+            // },
+            // filter: function() {
+            //     return $(this).is(":visible");
+            // },
+        });
     </script>
 @endpush

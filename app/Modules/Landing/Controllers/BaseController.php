@@ -41,7 +41,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form', 'checkimage', 'thumbnail', 'uang', 'photoexplode'];
+	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form', 'checkimage', 'thumbnail', 'uang', 'photoexplode', 'midtrans'];
 
 	protected $v_data = array();
 

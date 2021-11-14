@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Libraries\Midtrans;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -28,4 +29,13 @@ class Services extends BaseService
 	//
 	//     return new \CodeIgniter\Example();
 	// }
+
+	public static function midtrans()
+	{
+		$midtrans_lib = new Midtrans();
+		$conf = new MidtransConfig();
+		$params = array('server_key' => $conf->serverKey, 'production' => $conf->isProduction);
+		$midtrans_lib->config($params);
+		return $midtrans_lib;
+	}
 }

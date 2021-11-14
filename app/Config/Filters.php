@@ -34,19 +34,8 @@ class Filters extends BaseConfig
 			'csrf' => [
 				'except' => [
 					'auth/cekLogin',
-					'admin/getDataDesa',
-					'admin/getDataPemohon/.*?/.*+',
-					'admin/getDataPerizinan/.*?/.*+',
-					'landing/selectnohp',
-					// 'landing/gettoken',
-					'landing/checktoken',
-					'landing/token/get',
-					'landing/token/check',
-
-					'kesbangpol/penelitian/getdata/.*?/.*?',
-					'kesbangpol/penelitian/tolak/.*?',
-					'kesbangpol/pengabdian/getdata/.*?/.*?',
-					'kesbangpol/pengabdian/tolak/.*?',
+					'landing/checkrm',
+					'landing/booking/token',
 				]
 			],
 		],

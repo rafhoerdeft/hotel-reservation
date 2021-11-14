@@ -63,15 +63,19 @@ function formatTanggalTtd($date = '', $showThn = true)
 	return $formatTanggal;
 }
 
-function formatRangeTgl($date1 = null, $date2 = null)
+function formatRangeTgl($date1 = null, $date2 = null, $separator = 's/d')
 {
 	if ($date1 == null || $date2 == null) {
 		$formatTanggal = '';
 	} else {
 		if (date('Y', strtotime($date1)) == date('Y', strtotime($date2))) {
-			$formatTanggal = formatTanggalTtd($date1, false) . ' s/d ' . formatTanggalTtd($date2);
+			if (date('n', strtotime($date1)) == date('n', strtotime($date2))) {
+				$formatTanggal = date('d', strtotime($date1)) . ' ' . $separator . ' ' . formatTanggalTtd($date2);
+			} else {
+				$formatTanggal = formatTanggalTtd($date1, false) . ' ' . $separator . ' ' . formatTanggalTtd($date2);
+			}
 		} else {
-			$formatTanggal = formatTanggalTtd($date1) . ' s/d ' . formatTanggalTtd($date2);
+			$formatTanggal = formatTanggalTtd($date1) . ' ' . $separator . ' ' . formatTanggalTtd($date2);
 		}
 	}
 

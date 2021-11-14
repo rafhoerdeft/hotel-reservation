@@ -15,17 +15,16 @@
                     </a>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 bottom-menu">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Terms</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#homes">Home</a></li>
+                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#amenities">Amenities</a></li>
+                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#rooms">Rooms</a></li>
+                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#call-us">Contact</a></li>
                 </ul>
             </div>
             <div class="col-12">
-                <p>Copyright &#169; <a href="https://htmlcodex.com">HTML Codex</a> All Rights Reserved.</p>
-                <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                <p>Copyright &#169; <a href="#">R-Dev</a> All Rights Reserved.</p>
             </div>
         </div>
     </div>

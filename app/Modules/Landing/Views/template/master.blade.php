@@ -104,7 +104,7 @@
     <script src="{{ assets_front }}vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Booking Javascript File -->
-    <script src="{{ assets_front }}js/booking.js"></script>
+    {{-- <script src="{{ assets_front }}js/booking.js"></script> --}}
     <script src="{{ assets_front }}js/jqBootstrapValidation.min.js"></script>
 
     <!-- Main Javascript File -->
@@ -129,6 +129,7 @@
             $("#loading-show").fadeTo(1000, 500).fadeOut();
         })
     </script>
+
 </body>
 
 </html>

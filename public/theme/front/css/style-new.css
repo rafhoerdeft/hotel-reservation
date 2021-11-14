@@ -1388,6 +1388,86 @@ input::-ms-input-placeholder {
 }
 
 /* ================================================= */
+/* ------------------ Result Style ----------------- */
+/* ================================================= */
+
+#result {
+    min-height: 75vh;
+    position: relative;
+    padding: 80px 0 30px 0;
+    text-align: center;
+    background: #f2f2f2;
+}
+
+#result.home-result h2,
+#result.home-result h3,
+#result.home-result p {
+    color: #ffffff;
+}
+
+#result h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#result .link a {
+    color: #00CED1;
+}
+
+#result .result-link a {
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 7px 30px;
+    color: #00CED1;
+    cursor: pointer;
+    border: 1.5px solid #222222;
+    border-radius: 30px;
+    background: #222222;
+}
+
+#result .result-link a:hover {
+    color: #222222;
+    border: 1.5px solid #00CED1;
+    background: #00CED1;
+}
+
+#result .result-link-border a {
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 7px 30px;
+    color: #00CED1;
+    cursor: pointer;
+    border: 1.5px solid #00CED1;
+    border-radius: 30px;
+}
+
+#result .result-link-border a:hover {
+    color: #222222;
+    background: #00CED1;
+}
+
+#result .result-link-second a {
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 7px 30px;
+    color: #222222;
+    cursor: pointer;
+    border: 1.5px solid #00CED1;
+    border-radius: 30px;
+    background: #00CED1;
+}
+
+#result .result-link-second a:hover {
+    border: 1.5px solid #222222;
+    color: #00CED1;
+    background: #222222;
+}
+
+/* ================================================= */
 /* ------------------ Footer Style ----------------- */
 /* ================================================= */
 

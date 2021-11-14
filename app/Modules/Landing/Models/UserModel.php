@@ -1,13 +1,27 @@
-<?php namespace App\Modules\Landing\Models;
+<?php
 
-class UserModel
+namespace App\Modules\Landing\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model
 {
-    public function getUsers()
+    protected $table      = 'tbl_user';
+    protected $primaryKey = 'id_user';
+
+    protected $returnType     = 'object';
+
+    // useSoftDeletes bernilai true, agar data yang dihapus tidak benar benar dihapus
+    protected $useSoftDeletes = true;
+    //set nama kolom delete pada tabel dengan type datetime
+    protected $deletedField  = 'deleted_at';
+
+    // set untuk kolom yang dapat di insert atau diupdate 
+    protected $allowedFields = ['nama_user', 'no_hp_user', 'email_user'];
+
+
+    public function getData()
     {
-        return [
-            UserEntity::of('PL0001', 'Mufid Jamaluddin'),
-            UserEntity::of('PL0002', 'Andre Jhonson'),
-            UserEntity::of('PL0003', 'Indira Wright'),
-        ];
+        return $this->findAll();
     }
 }
