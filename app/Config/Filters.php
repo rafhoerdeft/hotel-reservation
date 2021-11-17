@@ -19,7 +19,8 @@ class Filters extends BaseConfig
 		'csrf'     		 => CSRF::class,
 		'toolbar'  		 => DebugToolbar::class,
 		'honeypot' 		 => Honeypot::class,
-		'authbappeda' 	 => \App\Filters\AuthFilterBappeda::class,
+		'authadmin' 	 => \App\Filters\AuthFilterAdmin::class,
+		'authuser' 	 	 => \App\Filters\AuthFilterUser::class,
 	];
 
 	/**
@@ -33,7 +34,7 @@ class Filters extends BaseConfig
 			//'honeypot'
 			'csrf' => [
 				'except' => [
-					'auth/cekLogin',
+					'auth/check',
 					'landing/checkrm',
 					'landing/booking/token',
 				]

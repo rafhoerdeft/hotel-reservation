@@ -235,11 +235,11 @@ iframe {
   background: -o-linear-gradient(bottom, #005bea, #00c6fb);
   background: -moz-linear-gradient(bottom, #005bea, #00c6fb);
   background: linear-gradient(bottom, #005bea, #00c6fb); */
-  background: rgb(73, 2, 238);
-  background: -webkit-linear-gradient(90deg, rgb(170 2 238 / 40%) 44%, rgb(53 255 247 / 55%) 98%);
-  background: -o-linear-gradient(90deg, rgb(170 2 238 / 40%) 44%, rgb(53 255 247 / 55%) 98%);
-  background: -moz-linear-gradient(90deg, rgb(170 2 238 / 40%) 44%, rgb(53 255 247 / 55%) 98%);
-  background: linear-gradient(90deg, rgb(170 2 238 / 40%) 44%, rgb(53 255 247 / 55%) 98%);
+  background: rgb(33, 54, 92);
+  background: -webkit-linear-gradient(90deg, rgb(26 53 74 / 50%) 44%, rgb(15 144 139 / 55%) 98%);
+  background: -o-linear-gradient(90deg, rgb(26 53 74 / 50%) 44%, rgb(15 144 139 / 55%) 98%);
+  background: -moz-linear-gradient(90deg, rgb(26 53 74 / 50%) 44%, rgb(15 144 139 / 55%) 98%);
+  background: linear-gradient(90deg, rgb(26 53 74 / 50%) 44%, rgb(15 144 139 / 55%) 98%);
 
   opacity: 0.9;
 }

@@ -17,10 +17,14 @@
             </div>
             <div class="col-12 bottom-menu">
                 <ul>
-                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#homes">Home</a></li>
-                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#amenities">Amenities</a></li>
-                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#rooms">Rooms</a></li>
-                    <li><a href="{{ isset($menu_link) ? base_url('/') : '' }}#call-us">Contact</a></li>
+                    @foreach ($menu as $nav)
+                        <li>
+                            <a
+                                href="{{ strpos($nav['url'], '#') !== false ? (isset($menu_link) ? base_url('/') : '') : '' }}{{ $nav['url'] }}">
+                                {{ $nav['title'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-12">

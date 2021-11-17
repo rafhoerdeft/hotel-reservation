@@ -39,7 +39,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'ipadd', 'view', 'striptag'];
+	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'ipadd', 'view', 'striptag', 'form'];
 	protected $session;
 	protected $MasterData;
 	protected $db;

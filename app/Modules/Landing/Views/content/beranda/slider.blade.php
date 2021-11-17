@@ -6,8 +6,8 @@
             <div class="container">
                 <h1>Feel at Home When You're Away</h1>
                 <div class="form-row">
-
                     <div class="col-md-10 offset-md-1">
+                        {!! form_open(base_url('landing/searchrm'), 'name="search_form" id="search_form" method="GET"') !!}
                         <div class="form-row">
                             <div class="col-md-8">
                                 <div class="input-daterange date-range form-row">
@@ -17,7 +17,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control checkin" id="checkin"
                                                     name="checkin" placeholder="DD/MM/YYYY" autocomplete="off"
-                                                    value="{{ date('d/m/Y') }}" required />
+                                                    value="{{ date('d/m/Y') }}" onkeydown="return false" required />
                                                 <div class="input-group-append">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -31,7 +31,8 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control checkout" id="checkout"
                                                     name="checkout" placeholder="DD/MM/YYYY" autocomplete="off"
-                                                    value="{{ date('d/m/Y', strtotime('+1 day')) }}" required />
+                                                    value="{{ date('d/m/Y', strtotime('+1 day')) }}"
+                                                    onkeydown="return false" required />
                                                 <div class="input-group-append">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -45,18 +46,9 @@
                                 <div class="form-row">
                                     <div class="control-group col-md-12">
                                         <label>People</label>
-                                        <select class="custom-select text-center" id="jml_orang" name="jml_orang"
-                                            required="required">
-                                            {{-- <option value="" selected>0</option> --}}
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                        </select>
+                                        <input type="number" maxlength="2" min="1" max="32"
+                                            class="form-control text-center" name="count" id="count"
+                                            style="border-radius: 30px" value="1" onkeydown="return false" required>
                                     </div>
                                     {{-- <div class="control-group col-md-6">
                                     <label>Kid</label>
@@ -67,9 +59,10 @@
                                 </div>
                             </div>
                             <div class="control-group col-md-2">
-                                <button class="btn btn-block">Search</button>
+                                <button class="btn btn-block" type="submit">Search</button>
                             </div>
                         </div>
+                        {!! form_close() !!}
                     </div>
                 </div>
             </div>
@@ -108,8 +101,8 @@
     <!-- Search Mobile View -->
     <div id="search" class="search-home">
         <div class="container">
+            {!! form_open(base_url('landing/searchrm'), 'name="search_form" id="search_form" method="GET"') !!}
             <div class="form-row">
-
                 <div class="col-md-6">
                     <div class="input-daterange date-range form-row">
                         <div class="control-group col-md-6">
@@ -117,7 +110,8 @@
                             <div class="form-group">
                                 <div class="input-group w-100">
                                     <input type="text" class="form-control checkin" id="checkin" name="checkin"
-                                        placeholder="DD/MM/YYYY" autocomplete="off" required />
+                                        placeholder="DD/MM/YYYY" value="{{ date('d/m/Y') }}" autocomplete="off"
+                                        onkeydown="return false" required />
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -130,7 +124,8 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="text" class="form-control checkout" id="checkout" name="checkout"
-                                        placeholder="DD/MM/YYYY" autocomplete="off" required />
+                                        placeholder="DD/MM/YYYY" value="{{ date('d/m/Y', strtotime('+1 day')) }}"
+                                        autocomplete="off" onkeydown="return false" required />
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -144,18 +139,9 @@
                     <div class="form-row">
                         <div class="control-group col-md-6">
                             <label>People</label>
-                            <select class="custom-select text-center" id="jml_orang" name="jml_orang"
-                                required="required">
-                                {{-- <option value="" selected>0</option> --}}
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                            </select>
+                            <input type="number" maxlength="2" min="1" max="32" class="form-control text-center"
+                                name="count" id="count" style="border-radius: 30px" value="1" onkeydown="return false"
+                                required>
                         </div>
                         {{-- <div class="control-group col-md-6">
                         <label>Kid</label>
@@ -168,6 +154,7 @@
                     <button class="btn btn-block">Search</button>
                 </div>
             </div>
+            {!! form_close() !!}
         </div>
     </div>
     <!-- Search Mobile View End -->
@@ -196,7 +183,7 @@
             format: 'dd/mm/yyyy',
             toggleActive: true,
             startDate: '0d',
-            endDate: '+8d', // maksimal 1 minggu
+            endDate: '+15d', // maksimal 2 minggu
             // beforeShowDay: function(date) {
             //     if (date_checkout !== undefined) {
             //         if (date.getDate() === date_checkout.getDate() &&

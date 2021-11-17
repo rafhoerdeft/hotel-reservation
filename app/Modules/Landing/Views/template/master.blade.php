@@ -8,27 +8,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- ==== Document Meta ==== -->
-    <meta name="author" content="rafho">
+    <meta name="author" content="erdevapp">
     <meta name="robots" content="index, follow">
     <meta name="keywords"
-        content="{{ isset($meta) ? $meta['title'] . ', loftcity, hotel, reservation' : 'loftcity, hotel, reservation' }}">
-    <meta name="og:description" content="{{ isset($meta) ? $meta['description'] : 'Hotel Reservation' }}">
+        content="{{ isset($meta) ? $meta['title'] . ', sadewa, homestay, reservation' : 'loftcity, homestay, reservation' }}">
+    <meta name="og:description" content="{{ isset($meta) ? $meta['description'] : 'Homestay Reservation' }}">
     <meta property="og:url"
         content="<?= $full_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" />
-    <meta property="og:site_name" content="loftcity.com" />
-    <meta property="og:title" content="{{ isset($meta) ? $meta['title'] : 'Loft City | Hotel Reservation' }}" />
+    <meta property="og:site_name" content="sadewahomestay.com" />
+    <meta property="og:title" content="{{ isset($meta) ? $meta['title'] : 'Sadewa | Homestay Reservation' }}" />
     <meta property="og:image" content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo.png') }}" />
 
-    <meta name="twitter:title" content="{{ isset($meta) ? $meta['title'] : 'Loft City | Hotel Reservation' }}" />
-    <meta name="twitter:description" content="{{ isset($meta) ? $meta['description'] : 'Hotel Reservation' }}" />
+    <meta name="twitter:title" content="{{ isset($meta) ? $meta['title'] : 'Sadewa | Homestay Reservation' }}" />
+    <meta name="twitter:description" content="{{ isset($meta) ? $meta['description'] : 'Homestay Reservation' }}" />
     <meta name="twitter:image" content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo.png') }}" />
 
 
-    <title>Loft City | Hotel Reservation</title>
+    <title>Sadewa | Homestay Reservation</title>
 
     <!-- Favicons -->
-    <link href="{{ base_url('assets/img/logo/favicon.ico') }}" rel="icon">
-    <link href="{{ base_url('assets/img/logo/apple-favicon.png') }}" rel="apple-touch-icon">
+    <link href="{{ base_url('assets/img/icon-profil/s.jpg') }}" rel="icon">
+    <link href="{{ base_url('assets/img/icon-profil/s.jpg') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Raleway:100,200,300,400,500,600,700,800,900"

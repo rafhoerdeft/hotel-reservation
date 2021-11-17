@@ -12,19 +12,30 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	$subroutes->get('/', 'Beranda::index');
 	$subroutes->get('home', 'Beranda::index');
 	$subroutes->post('checkrm', 'Beranda::checkRooms');
+	$subroutes->get('searchrm', 'Beranda::searchRooms');
 
-	// Token 
+	// Auth
+	$subroutes->get('logout', 'Auth::logout');
+	$subroutes->group('login', function ($routes) {
+		$routes->get('/', 'Auth::login');
+		$routes->post('process', 'Auth::processLogin');
+	});
+	$subroutes->group('register', function ($routes) {
+		$routes->get('/', 'Auth::register');
+		$routes->post('save', 'Auth::saveRegister');
+	});
+
+	// Booking 
 	$subroutes->group('booking', function ($routes) {
 		$routes->add('token', 'Booking::getToken');
 		$routes->add('save', 'Booking::saveBook');
 		$routes->get('result/(:any)', 'Booking::resultTrans/$1', ['as' => 'booking_result']);
 	});
 
-	// Forum Kelitbangan
-	$subroutes->group('usulanpenelitian', ['namespace' => 'App\Modules\Landing\Controllers\Forum'], function ($routes) {
-		$routes->add('', 'UsulanPenelitian::index');
-		$routes->get('detail/(:any)', 'UsulanPenelitian::detail/$1');
-		$routes->get('form', 'UsulanPenelitian::add');
-		$routes->post('save', 'UsulanPenelitian::save');
+	// History
+	$subroutes->group('histori', ['namespace' => 'App\Modules\Landing\Controllers', 'filter' => 'authuser'], function ($routes) {
+		$routes->add('/', 'Beranda::historiBooking');
 	});
+
+	$subroutes->get('notif', 'Notification::index');
 });

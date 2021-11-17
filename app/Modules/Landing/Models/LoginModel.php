@@ -4,10 +4,10 @@ namespace App\Modules\Landing\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class LoginModel extends Model
 {
-    protected $table      = 'tbl_user';
-    protected $primaryKey = 'id_user';
+    protected $table      = 'tbl_login';
+    protected $primaryKey = 'id_login';
 
     protected $returnType     = 'object';
 
@@ -17,7 +17,7 @@ class UserModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // set untuk kolom yang dapat di insert atau diupdate 
-    protected $allowedFields = ['nama_user', 'first_name', 'last_name', 'no_hp_user', 'email_user'];
+    protected $allowedFields = ['id_user', 'username', 'password', 'role'];
 
 
     public function getData($id = null)
@@ -25,7 +25,7 @@ class UserModel extends Model
         if ($id == null) {
             return $this->findAll();
         } else {
-            return $this->where('id_user', $id)->get()->getRow();
+            return $this->where('id_login', $id)->get()->getRow();
         }
     }
 }

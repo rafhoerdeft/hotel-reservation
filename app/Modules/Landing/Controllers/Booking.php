@@ -58,9 +58,6 @@ class Booking extends BaseController
             }
 
             // Optional
-
-
-            // Optional
             $billing_address = array(
                 'first_name'    => "Andri",
                 'last_name'     => "Litani",
@@ -82,15 +79,28 @@ class Booking extends BaseController
                 'country_code'  => 'IDN'
             );
 
-            // Optional
-            $customer_details = array(
-                'first_name'    => $post['fname'],
-                'last_name'     => $post['lname'],
-                'email'         => $post['email_user'],
-                'phone'         => $post['no_hp_user'],
-                // 'billing_address'  => $billing_address,
-                // 'shipping_address' => $shipping_address
-            );
+            if (isset($post['user'])) { // jika sudah login
+                $m_user = new UserModel();
+                $user = $m_user->getData(decode($post['user']));
+                $customer_details = array(
+                    'first_name'    => $user->first_name,
+                    'last_name'     => $user->last_name,
+                    'email'         => $user->email_user,
+                    'phone'         => $user->no_hp_user,
+                    // 'billing_address'  => $billing_address,
+                    // 'shipping_address' => $shipping_address
+                );
+            } else {
+                $customer_details = array(
+                    'first_name'    => $post['fname'],
+                    'last_name'     => $post['lname'],
+                    'email'         => $post['email_user'],
+                    'phone'         => $post['no_hp_user'],
+                    // 'billing_address'  => $billing_address,
+                    // 'shipping_address' => $shipping_address
+                );
+            }
+
 
             // Data yang akan dikirim untuk request redirect_url.
             $credit_card['secure'] = true;
@@ -151,75 +161,80 @@ class Booking extends BaseController
 
             // Using transaction query, if one group query fails all group will rolled back
             $this->db->transStart(); // Start transaction query
-            $data_user = array(
-                'nama_user'     => $input_data['fname'] . ' ' . $input_data['lname'],
-                'no_hp_user'    => $input_data['no_hp_user'],
-                'email_user'    => $input_data['email_user'],
-            );
-            $save_user = $m_user->save($data_user);
-
-            if ($save_user) {
-                $id_user = $this->db->insertID();
-                $no_order = $result_data['order_id'];
-                $checkin = date('Y-m-d', strtotime(str_replace('/', '-', $input_data['checkin'])));
-                $checkout = date('Y-m-d', strtotime(str_replace('/', '-', $input_data['checkout'])));
-                $date1 = date_create($checkin);
-                $date2 = date_create($checkout);
-                $diff = date_diff($date1, $date2);
-                $jml_hari = $diff->format("%a");
-
-                $id_jenis_kamar = decode($input_data['jenis_kamar']);
-                $data_kamar = $m_room->getData($id_jenis_kamar);
-                $harga_kamar = $data_kamar->harga;
-
-                $tot_bayar = (int)$harga_kamar * (int)$input_data['jml_kamar'] * (int)$jml_hari;
-
-                $data_resv = array(
-                    'id_user'       => $id_user,
-                    'no_order'      => $no_order,
-                    'waktu_booking' => date('Y-m-d H:i:s'),
-                    'tgl_awal'      => $checkin,
-                    'tgl_akhir'     => $checkout,
-                    'jml_hari'      => (int)$jml_hari,
-                    'status'        => 1,
+            if (!isset($input_data['user'])) { // jika belum login
+                $data_user = array(
+                    'nama_user'     => $input_data['fname'] . ' ' . $input_data['lname'],
+                    'first_name'    => $input_data['fname'],
+                    'last_name'     => $input_data['lname'],
+                    'no_hp_user'    => $input_data['no_hp_user'],
+                    'email_user'    => $input_data['email_user'],
                 );
-                $save_resv = $m_resv->save($data_resv);
-
-                if ($save_resv) {
-                    $id_reservasi = $this->db->insertID();
-                    $rooms = explode(';', $input_data['kamar']);
-                    foreach ($rooms as $id) {
-                        $data_detail = array(
-                            'id_reservasi'  => $id_reservasi,
-                            'id_kamar'      => $id,
-                        );
-                        $m_detail->save($data_detail);
-                    }
-
-                    $data_bayar = array(
-                        'id_reservasi'  => $id_reservasi,
-                        'total_bayar'   => $tot_bayar,
-                        'jenis_bayar'   => $result_data['payment_type'],
-                        'kode_status'   => $result_data['status_code'],
-                        'pdf_url'       => $result_data['pdf_url'],
-                    );
-                    if ($result_data['payment_type'] == 'bank_transfer') {
-                        $data_bayar['via_bayar'] = $result_data['va_numbers'][0]['bank']; // Nama Bank
-                        $data_bayar['via_nomor'] = $result_data['va_numbers'][0]['va_number']; // Kode Pembayaran
-                    }
-                    if ($result_data['payment_type'] == 'qris') { // Khusus Shopee Pay
-                        $data_bayar['via_bayar'] = 'shopee pay';
-                    }
-                    if ($result_data['payment_type'] == 'echannel') { // Khusus Bank Mandiri
-                        $data_bayar['via_bayar'] = $result_data['biller_code']; // Kode Perusahaan
-                        $data_bayar['via_nomor'] = $result_data['bill_key']; // Kode Pembayaran
-                    }
-                    if ($result_data['payment_type'] == 'cstore') { // Khusus Indomart/Alfamart
-                        $data_bayar['via_nomor'] = $result_data['payment_code']; // Kode Pembayaran
-                    }
-                    $m_bayar->save($data_bayar);
-                }
+                $m_user->save($data_user);
+                $id_user = $this->db->insertID();
+            } else {
+                $id_user = decode($input_data['user']);
             }
+
+            $no_order = $result_data['order_id'];
+            $checkin = date('Y-m-d', strtotime(str_replace('/', '-', $input_data['checkin'])));
+            $checkout = date('Y-m-d', strtotime(str_replace('/', '-', $input_data['checkout'])));
+            $date1 = date_create($checkin);
+            $date2 = date_create($checkout);
+            $diff = date_diff($date1, $date2);
+            $jml_hari = $diff->format("%a");
+
+            $id_jenis_kamar = decode($input_data['jenis_kamar']);
+            $data_kamar = $m_room->getData($id_jenis_kamar);
+            $harga_kamar = $data_kamar->harga;
+
+            $tot_bayar = (int)$harga_kamar * (int)$input_data['jml_kamar'] * (int)$jml_hari;
+
+            $data_resv = array(
+                'id_user'       => $id_user,
+                'no_order'      => $no_order,
+                'waktu_booking' => date('Y-m-d H:i:s'),
+                'tgl_awal'      => $checkin,
+                'tgl_akhir'     => $checkout,
+                'jml_hari'      => (int)$jml_hari,
+                'status'        => 1,
+            );
+            $save_resv = $m_resv->save($data_resv);
+
+            if ($save_resv) {
+                $id_reservasi = $this->db->insertID();
+                $rooms = explode(';', $input_data['kamar']);
+                foreach ($rooms as $id) {
+                    $data_detail = array(
+                        'id_reservasi'  => $id_reservasi,
+                        'id_kamar'      => $id,
+                    );
+                    $m_detail->save($data_detail);
+                }
+
+                $data_bayar = array(
+                    'id_reservasi'  => $id_reservasi,
+                    'total_bayar'   => $tot_bayar,
+                    'jenis_bayar'   => $result_data['payment_type'],
+                    'kode_status'   => $result_data['status_code'],
+                    'pdf_url'       => $result_data['pdf_url'],
+                );
+                if ($result_data['payment_type'] == 'bank_transfer') {
+                    $data_bayar['via_bayar'] = $result_data['va_numbers'][0]['bank']; // Nama Bank
+                    $data_bayar['via_nomor'] = $result_data['va_numbers'][0]['va_number']; // Kode Pembayaran
+                }
+                if ($result_data['payment_type'] == 'qris') { // Khusus Shopee Pay
+                    $data_bayar['via_bayar'] = 'shopee pay';
+                }
+                if ($result_data['payment_type'] == 'echannel') { // Khusus Bank Mandiri
+                    $data_bayar['via_bayar'] = $result_data['biller_code']; // Kode Perusahaan
+                    $data_bayar['via_nomor'] = $result_data['bill_key']; // Kode Pembayaran
+                }
+                if ($result_data['payment_type'] == 'cstore') { // Khusus Indomart/Alfamart
+                    $data_bayar['via_nomor'] = $result_data['payment_code']; // Kode Pembayaran
+                }
+                $m_bayar->save($data_bayar);
+            }
+
             $this->db->transComplete(); // Transaction complete
 
             if ($this->db->transStatus() === false) { // Error check

@@ -104,7 +104,20 @@ h6 {
     left: 0;
     display: inline-block;
     position: absolute;
-    line-height: 55px;
+    line-height: 45px;
+    /* font-family: 'Roboto Slab', serif; */
+    font-size: 29pt;
+    font-weight: 750;
+    color: #00CED1;
+}
+
+#header .logo-sm {
+    position: absolute;
+    display: inline-block;
+    line-height: 95px;
+    padding-left: 25px;
+    letter-spacing: 11.2px;
+    color: white;
 }
 
 #header .logo img {
@@ -210,7 +223,9 @@ h6 {
 }
 
 @media (max-width: 575.98px) {
-    #header .logo {
+
+    #header .logo,
+    #header .logo-sm {
         padding-left: 20px;
     }
 
@@ -1387,6 +1402,29 @@ input::-ms-input-placeholder {
     background: #00CED1;
 }
 
+#login .link a {
+    color: #00CED1;
+}
+
+#login .login-form a {
+    display: inline-block;
+    padding: 8px 30px;
+    background: white;
+    color: #00CED1;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border: 1.5px solid #00CED1;
+}
+
+#login .login-form a:hover {
+    color: white;
+    background: #00CED1;
+}
+
 /* ================================================= */
 /* ------------------ Result Style ----------------- */
 /* ================================================= */
@@ -1462,6 +1500,86 @@ input::-ms-input-placeholder {
 }
 
 #result .result-link-second a:hover {
+    border: 1.5px solid #222222;
+    color: #00CED1;
+    background: #222222;
+}
+
+/* ================================================= */
+/* ------------------ History Style ----------------- */
+/* ================================================= */
+
+#history {
+    min-height: 75vh;
+    position: relative;
+    padding: 80px 0 30px 0;
+    text-align: center;
+    background: #f2f2f2;
+}
+
+#history.home-history h2,
+#history.home-history h3,
+#history.home-history p {
+    color: #ffffff;
+}
+
+#history h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#history .link a {
+    color: #00CED1;
+}
+
+#history .history-link button {
+    /* font-weight: bold; */
+    font-size: 11pt;
+    display: inline-block;
+    padding: 4px 25px;
+    color: #00CED1;
+    cursor: pointer;
+    border: 1.5px solid #222222;
+    border-radius: 30px;
+    background: #222222;
+}
+
+#history .history-link button:hover {
+    color: #222222;
+    border: 1.5px solid #00CED1;
+    background: #00CED1;
+}
+
+#history .history-link-border a {
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 7px 30px;
+    color: #00CED1;
+    cursor: pointer;
+    border: 1.5px solid #00CED1;
+    border-radius: 30px;
+}
+
+#history .history-link-border a:hover {
+    color: #222222;
+    background: #00CED1;
+}
+
+#history .history-link-second a {
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    padding: 7px 30px;
+    color: #222222;
+    cursor: pointer;
+    border: 1.5px solid #00CED1;
+    border-radius: 30px;
+    background: #00CED1;
+}
+
+#history .history-link-second a:hover {
     border: 1.5px solid #222222;
     color: #00CED1;
     background: #222222;

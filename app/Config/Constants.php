@@ -23,19 +23,20 @@ $base = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' . $_
 defined('BASE') || define('BASE', $base);
 
 // -------------------------------------------------------------
+// LOGS
+// -------------------------------------------------------------
+define('user_log', 'SimSadewaHomestayUserCustomer');
+define('admin_log', 'SimSadewaHomestayUserAdmin');
+
+// -------------------------------------------------------------
 // URL ASSETS
 // -------------------------------------------------------------
-define("assets_url", "https://scn.magelangkab.go.id/backend/modernadmin/");
+define("assets_url", "https://cdn.erdevapp.com/template/admin/modernadmin/");
 define("assets_front", str_replace('\/', '/', BASE . "/theme/front/"));
 define("assets", str_replace('\/', '/', BASE . "/assets/"));
+define("cdn", "https://cdn.erdevapp.com/");
 
 define("views", "\App\Modules\/");
-
-// -------------------------------------------------------------
-// Google reCaptcha
-// -------------------------------------------------------------
-define('g_site_key', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI');
-define('g_secret_key', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
 
 /*
  | --------------------------------------------------------------------------

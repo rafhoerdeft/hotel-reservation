@@ -1,6 +1,6 @@
 function createDataTable(name_id, search = true) {
     $('#' + name_id).dataTable({
-        "dom": '<"row"<"col-md-6"l><"col-md-6"f>><"table-responsive"t><"row"<"col-md-6"i><"col-md-6"p>>',
+        "dom": '<"row"<"col-md-6"<"float-left"l>><"col-md-6"f>><"table-responsive"t><"row mt-2"<"col-md-6"<"float-left"i>><"col-md-6"p>>',
         "searching": search,
         "language": {
             "emptyTable": "Tidak ada data yang tersedia",

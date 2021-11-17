@@ -34,7 +34,7 @@ class JenisKamarModel extends Model
         'foto',
         'harga',
         'diskon',
-        'slug',
+        // 'slug',
     ];
 
 
