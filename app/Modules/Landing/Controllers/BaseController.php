@@ -42,7 +42,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form', 'checkimage', 'thumbnail', 'uang', 'photoexplode', 'midtrans'];
+	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form', 'checkimage', 'thumbnail', 'uang', 'photoexplode', 'midtrans', 'text'];
 
 	protected $v_data = array();
 
@@ -66,6 +66,10 @@ class BaseController extends Controller
 		$this->session = \Config\Services::session();
 		$this->MasterData = new MasterData();
 		$this->db = \Config\Database::connect();
+
+		if (session('logs') == admin_log) {
+			$this->session->destroy();
+		}
 
 		//ambil list menu pada model MenuModel
 		$m_nav = new MenuModel;

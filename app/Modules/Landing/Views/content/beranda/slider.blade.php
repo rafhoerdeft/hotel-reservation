@@ -140,8 +140,7 @@
                         <div class="control-group col-md-6">
                             <label>People</label>
                             <input type="number" maxlength="2" min="1" max="32" class="form-control text-center"
-                                name="count" id="count" style="border-radius: 30px" value="1" onkeydown="return false"
-                                required>
+                                name="count" id="count" style="border-radius: 30px" value="1" required>
                         </div>
                         {{-- <div class="control-group col-md-6">
                         <label>Kid</label>

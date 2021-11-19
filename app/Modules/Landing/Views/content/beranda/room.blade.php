@@ -94,7 +94,10 @@
                                             </div>
                                             <div class="photo-slider-nav-{{ $index }} photo-slide-nav">
                                                 @foreach ($photo_arr as $photo)
-                                                    <div><img src="{{ base_url('upload/room/' . $photo) }}"></div>
+                                                    <div>
+                                                        <img src="{{ base_url('upload/room/' . $photo) }}"
+                                                            style="height: 100px">
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>

@@ -48,7 +48,7 @@
                                     <label>People</label>
                                     <input type="number" maxlength="2" min="1" max="32" class="form-control text-center"
                                         name="count" id="count" style="border-radius: 30px" value="{{ $count }}"
-                                        onkeydown="return false" required>
+                                        required>
                                 </div>
                                 {{-- <div class="control-group col-md-6">
                                 <label>Kid</label>
@@ -177,7 +177,10 @@
                                                     </div>
                                                     <div class="photo-slider-nav-{{ $index }} photo-slide-nav">
                                                         @foreach ($photo_arr as $photo)
-                                                            <div><img src="{{ base_url('upload/room/' . $photo) }}"></div>
+                                                            <div>
+                                                                <img src="{{ base_url('upload/room/' . $photo) }}"
+                                                                    style="height: 100px">
+                                                            </div>
                                                         @endforeach
                                                     </div>
                                                 </div>

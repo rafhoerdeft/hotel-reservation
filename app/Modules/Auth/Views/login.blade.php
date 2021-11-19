@@ -28,24 +28,22 @@
     <!-- END Page Level CSS-->
 
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/external/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_login . 'external/bootstrap/css/bootstrap.min.css' }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+        href="{{ assets_login . 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
+        href="{{ assets_login . 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/external/animate/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_login . 'external/animate/animate.css' }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/external/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_login . 'external/css-hamburgers/hamburgers.min.css' }}">
     <!--===============================================================================================-->
-    {{-- <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/external/select2/select2.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{ assets_login.('external/select2/select2.min.css') }}"> --}}
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_login . 'css/util.css' }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_login . 'css/main.css' }}">
     <!--===============================================================================================-->
     <link href="{{ base_url('assets/css/loading.css') }}" type="text/css" rel="stylesheet">
 
@@ -151,14 +149,14 @@
     <script src="{{ assets_url . 'app-assets/js/core/app.js' }}" type="text/javascript"></script>
     <!-- END MODERN JS-->
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/external/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ assets_login . 'external/jquery/jquery-3.2.1.min.js' }}"></script>
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/external/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ base_url('theme/login/external/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ assets_login . 'external/bootstrap/js/popper.js' }}"></script>
+    <script src="{{ assets_login . 'external/bootstrap/js/bootstrap.min.js' }}"></script>
     <!--===============================================================================================-->
-    {{-- <script src="{{ base_url('theme/login/external/select2/select2.min.js') }}"></script> --}}
+    {{-- <script src="{{ assets_login.('external/select2/select2.min.js') }}"></script> --}}
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/js/main.js') }}"></script>
+    <script src="{{ assets_login . 'js/main.js' }}"></script>
 
     <script src="{{ base_url('assets/js/auth_log.js') }}"></script>
     <script src="{{ base_url('assets/js/block.js') }}"></script>

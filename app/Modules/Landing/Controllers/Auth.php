@@ -17,6 +17,7 @@ class Auth extends BaseController
 
     public function login()
     {
+        $this->session->destroy();
         $this->v_data['menu_link']  = TRUE;
         $this->v_data['active']     = '5';
 

@@ -36,6 +36,7 @@ class Filters extends BaseConfig
 				'except' => [
 					'auth/check',
 					'landing/checkrm',
+					'landing/notifmt',
 					'landing/booking/token',
 				]
 			],

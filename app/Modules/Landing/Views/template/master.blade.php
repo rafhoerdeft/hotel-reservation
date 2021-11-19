@@ -110,7 +110,7 @@
     <!-- Main Javascript File -->
     <script src="{{ assets_front }}js/main.js"></script>
 
-    {{-- <script src="{{ base_url('assets/js/block.js') }}"></script> --}}
+    <script src="{{ base_url('assets/js/block.js') }}"></script>
 
     <!-- Plugin JS tambahan -->
     @stack('js_plugin')

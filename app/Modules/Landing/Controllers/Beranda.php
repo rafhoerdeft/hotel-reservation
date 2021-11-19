@@ -46,7 +46,11 @@ class Beranda extends BaseController
 
             $check_room = $m_kamar->select(["GROUP_CONCAT(id_kamar SEPARATOR ';') as rooms", "COUNT(id_kamar) as count"])->where('id_jenis_kamar', decode($room))->whereNotIn('id_kamar', function (BaseBuilder $builder) use ($tgl_checkin, $tgl_checkout) {
                 return $builder->select('id_kamar')->from('tbl_reservasi_detail')->whereIn('id_reservasi', function (BaseBuilder $builder) use ($tgl_checkin, $tgl_checkout) {
-                    return $builder->select('id_reservasi')->from('tbl_reservasi')->where("('" . $tgl_checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $tgl_checkout . "' BETWEEN tgl_awal AND tgl_akhir)")->orWhere("('" . $tgl_checkin . "' < tgl_awal AND '" . $tgl_checkout . "' > tgl_akhir)");
+                    return $builder->select('id_reservasi')
+                        ->from('tbl_reservasi')
+                        // ->where('status <', 3)
+                        ->where("('" . $tgl_checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $tgl_checkout . "' BETWEEN tgl_awal AND tgl_akhir)")
+                        ->orWhere("('" . $tgl_checkin . "' < tgl_awal AND '" . $tgl_checkout . "' > tgl_akhir)");
                 });
             });
 
@@ -125,7 +129,11 @@ class Beranda extends BaseController
                 ->join('tbl_kamar kmr', "tbl_jenis_kamar.id_jenis_kamar = kmr.id_jenis_kamar", "LEFT")
                 ->having('(kapasitas * count) >=', $count)->whereNotIn('kmr.id_kamar', function (BaseBuilder $builder) use ($checkin, $checkout) {
                     return $builder->select('id_kamar')->from('tbl_reservasi_detail')->whereIn('id_reservasi', function (BaseBuilder $builder) use ($checkin, $checkout) {
-                        return $builder->select('id_reservasi')->from('tbl_reservasi')->where("('" . $checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $checkout . "' BETWEEN tgl_awal AND tgl_akhir)")->orWhere("('" . $checkin . "' < tgl_awal AND '" . $checkout . "' > tgl_akhir)");
+                        return $builder->select('id_reservasi')
+                            ->from('tbl_reservasi')
+                            // ->where('status <', 3)
+                            ->where("('" . $checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $checkout . "' BETWEEN tgl_awal AND tgl_akhir)")
+                            ->orWhere("('" . $checkin . "' < tgl_awal AND '" . $checkout . "' > tgl_akhir)");
                     });
                 });
 

@@ -37,5 +37,5 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 		$routes->add('/', 'Beranda::historiBooking');
 	});
 
-	$subroutes->get('notif', 'Notification::index');
+	$subroutes->add('notifmt', 'Notification::index');
 });

@@ -2,7 +2,6 @@
 
 namespace App\Modules\Landing\Models;
 
-use CodeIgniter\Database\BaseBuilder;
 use CodeIgniter\Model;
 
 class JenisKamarModel extends Model
@@ -21,19 +20,21 @@ class JenisKamarModel extends Model
     // set untuk kolom yang dapat di insert atau diupdate 
     protected $allowedFields = [
         'nama_jenis_kamar',
-        'ac',
-        'bed',
+        'keterangan',
         'jenis_bed',
+        'bed',
+        'kapasitas',
+        'harga',
+        'ac',
         'tv',
         'wifi',
-        'telephone',
-        'bathtub',
         'shower',
-        'breakfast',
+        'bathtub',
         'drink',
-        'foto',
-        'harga',
+        'breakfast',
+        'telephone',
         'diskon',
+        'foto',
         // 'slug',
     ];
 

@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="col-12">
-                <p>Copyright &#169; <a href="#">R-Dev</a> All Rights Reserved.</p>
+                <p>Copyright &#169; <a href="www.erdevapp.com">ErdevApp</a> All Rights Reserved.</p>
             </div>
         </div>
     </div>

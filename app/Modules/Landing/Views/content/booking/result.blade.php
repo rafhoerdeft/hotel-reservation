@@ -5,7 +5,7 @@
     <div id="result">
         <div class="container">
             <div class="section-header">
-                <h2>Thank You for Booking in LoftCity</h2>
+                <h2>Thank You for Booking in Sadewa Homestay</h2>
             </div>
             <label style="font-size: 14pt;">Batas Akhir Pembayaran </label>
             <h4 class="mb-3">

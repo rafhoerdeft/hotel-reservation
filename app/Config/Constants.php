@@ -31,8 +31,9 @@ define('admin_log', 'SimSadewaHomestayUserAdmin');
 // -------------------------------------------------------------
 // URL ASSETS
 // -------------------------------------------------------------
-define("assets_url", "https://cdn.erdevapp.com/template/admin/modernadmin/");
-define("assets_front", str_replace('\/', '/', BASE . "/theme/front/"));
+define("assets_url", "https://cdn.erdevapp.com/template/admin/001/");
+define("assets_front", "https://cdn.erdevapp.com/template/landing/reservation/001/");
+define("assets_login", "https://cdn.erdevapp.com/template/auth/login/");
 define("assets", str_replace('\/', '/', BASE . "/assets/"));
 define("cdn", "https://cdn.erdevapp.com/");
 
