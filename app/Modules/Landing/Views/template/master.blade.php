@@ -17,11 +17,13 @@
         content="<?= $full_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" />
     <meta property="og:site_name" content="sadewahomestay.com" />
     <meta property="og:title" content="{{ isset($meta) ? $meta['title'] : 'Sadewa | Homestay Reservation' }}" />
-    <meta property="og:image" content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo.png') }}" />
+    <meta property="og:image"
+        content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/icon-profil/s.jpg') }}" />
 
     <meta name="twitter:title" content="{{ isset($meta) ? $meta['title'] : 'Sadewa | Homestay Reservation' }}" />
     <meta name="twitter:description" content="{{ isset($meta) ? $meta['description'] : 'Homestay Reservation' }}" />
-    <meta name="twitter:image" content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo.png') }}" />
+    <meta name="twitter:image"
+        content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/icon-profil/s.jpg') }}" />
 
 
     <title>Sadewa | Homestay Reservation</title>

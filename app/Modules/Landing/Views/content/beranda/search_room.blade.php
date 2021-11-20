@@ -445,12 +445,12 @@
 @endpush
 
 @push('css_plugin')
-    <link rel="stylesheet" href="{{ assets . 'vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' }}">
-    <link rel="stylesheet" href="{{ assets . 'vendors/bootstrap-datepicker/style-datepicker.css' }}">
+    <link rel="stylesheet" href="{{ cdn . 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.css' }}">
+    <link rel="stylesheet" href="{{ cdn . 'vendor/bootstrap-datepicker/style-datepicker.css' }}">
 @endpush
 
 @push('js_plugin')
-    <script src="{{ assets . 'vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
+    <script src="{{ cdn . 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
 @endpush
 
 @push('js_script')
