@@ -20,11 +20,6 @@ class CarouselModel extends Model
     // set bagian useTimestamps kita set true agar mencatat bagian created_at dan updated_at
     // protected $useTimestamps = true;
 
-    // untuk setting waktu insert, update, delete data disimpan di kolom created_at, updated_at, deleted_at (If useSoftDeletes = true)
-    // protected $createdField  = 'created_at';
-    // protected $updatedField  = 'updated_at';
-    // protected $deletedField  = 'deleted_at';
-
 
     public function getData($id = null, $limit = 5)
     {

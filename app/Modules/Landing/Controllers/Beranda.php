@@ -48,7 +48,6 @@ class Beranda extends BaseController
                 return $builder->select('id_kamar')->from('tbl_reservasi_detail')->whereIn('id_reservasi', function (BaseBuilder $builder) use ($tgl_checkin, $tgl_checkout) {
                     return $builder->select('id_reservasi')
                         ->from('tbl_reservasi')
-                        // ->where('status <', 3)
                         ->where("('" . $tgl_checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $tgl_checkout . "' BETWEEN tgl_awal AND tgl_akhir)")
                         ->orWhere("('" . $tgl_checkin . "' < tgl_awal AND '" . $tgl_checkout . "' > tgl_akhir)");
                 });
@@ -131,7 +130,6 @@ class Beranda extends BaseController
                     return $builder->select('id_kamar')->from('tbl_reservasi_detail')->whereIn('id_reservasi', function (BaseBuilder $builder) use ($checkin, $checkout) {
                         return $builder->select('id_reservasi')
                             ->from('tbl_reservasi')
-                            // ->where('status <', 3)
                             ->where("('" . $checkin . "' BETWEEN tgl_awal AND tgl_akhir) OR ('" . $checkout . "' BETWEEN tgl_awal AND tgl_akhir)")
                             ->orWhere("('" . $checkin . "' < tgl_awal AND '" . $checkout . "' > tgl_akhir)");
                     });

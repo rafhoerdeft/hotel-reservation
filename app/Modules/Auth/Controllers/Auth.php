@@ -31,8 +31,9 @@ class Auth extends BaseController
 			$hasil = $this->MasterData->getWhereDataAll('tbl_login', $where);
 
 			if (count($hasil->getResultArray()) == 1) {
-				$role = $hasil->getRow()->role;
-				$id_user = $hasil->getRow()->id_user;
+				$row = $hasil->getRow();
+				$role = $row->role;
+				$id_user = $row->id_user;
 				$user = $this->MasterData->getWhereDataAll('tbl_user', "id_user = $id_user")->getRow();
 
 				$sess_data['user']         = $id_user;
@@ -41,7 +42,7 @@ class Auth extends BaseController
 				$sess_data['last_name']    = $user->last_name;
 				$sess_data['email_user']   = $user->email_user;
 				$sess_data['no_hp_user']   = $user->no_hp_user;
-				// $sess_data['username']     = $hasil->getRow()->username;
+				// $sess_data['username']     = $row->username;
 				$sess_data['role']         = $role;
 				$sess_data['logs']         = admin_log;
 

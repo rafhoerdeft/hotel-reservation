@@ -51,7 +51,6 @@ class Auth extends BaseController
                 $sess_data['last_name']    = $user->last_name;
                 $sess_data['email_user']   = $user->email_user;
                 $sess_data['no_hp_user']   = $user->no_hp_user;
-                // $sess_data['username']     = $hasil->getRow()->username;
                 $sess_data['role']         = $role;
                 $sess_data['logs']         = user_log;
 
@@ -82,7 +81,7 @@ class Auth extends BaseController
             $m_user = new UserModel();
             $m_login = new LoginModel();
 
-            $this->db->transStart(); // Start transaction query
+            $this->db->transStart();
             $data_user = array(
                 'nama_user'     => $post['fname'] . ' ' . $post['lname'],
                 'first_name'    => $post['fname'],
@@ -102,9 +101,9 @@ class Auth extends BaseController
                 );
                 $m_login->save($data_login);
             }
-            $this->db->transComplete(); // Transaction complete
+            $this->db->transComplete();
 
-            if ($this->db->transStatus() === false) { // Error check
+            if ($this->db->transStatus() === false) {
                 $res = ['response' => false, 'alert' => "Gagal simpan data user"];
             } else {
                 alert_success('Selamat, registrasi berhasil. Silahkan login.');
@@ -118,10 +117,8 @@ class Auth extends BaseController
 
     public function logout()
     {
-        // Hapus semua data pada session
         $this->session->destroy();
 
-        // redirect ke halaman login	
         return redirect()->to(base_url());
     }
 }

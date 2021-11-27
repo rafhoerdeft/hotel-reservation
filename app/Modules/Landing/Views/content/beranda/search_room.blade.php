@@ -490,7 +490,7 @@
 
 @push('js_plugin')
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ clientKeyMt() }}">
+        data-client-key="{{ clientKey() }}">
     </script>
 @endpush
 

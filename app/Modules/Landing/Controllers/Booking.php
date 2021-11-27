@@ -87,8 +87,6 @@ class Booking extends BaseController
                     'last_name'     => $user->last_name,
                     'email'         => $user->email_user,
                     'phone'         => $user->no_hp_user,
-                    // 'billing_address'  => $billing_address,
-                    // 'shipping_address' => $shipping_address
                 );
             } else {
                 $customer_details = array(
@@ -96,16 +94,10 @@ class Booking extends BaseController
                     'last_name'     => $post['lname'],
                     'email'         => $post['email_user'],
                     'phone'         => $post['no_hp_user'],
-                    // 'billing_address'  => $billing_address,
-                    // 'shipping_address' => $shipping_address
                 );
             }
 
-
-            // Data yang akan dikirim untuk request redirect_url.
             $credit_card['secure'] = true;
-            //ser save_card true to enable oneclick or 2click
-            //$credit_card['save_card'] = true;
 
             $time = time();
             $custom_expiry = array(
@@ -122,9 +114,8 @@ class Booking extends BaseController
                 'expiry'                => $custom_expiry
             );
 
-            // error_log(json_encode($transaction_data));
-            $snapToken = snapTokenMt($transaction_data);
-            // error_log($snapToken);
+            $snapToken = snapToken($transaction_data);
+
             if ($snapToken) {
                 $res = ['response' => true, 'token' => $snapToken, 'data' => $post];
             } else {
@@ -151,16 +142,7 @@ class Booking extends BaseController
             $result_data = json_decode($post['result_data'], true);
             $input_data = json_decode($post['input_data'], true);
 
-            // echo '<pre>';
-            // print_r($result_data);
-            // echo "<br>";
-            // echo "<br>";
-            // print_r($input_data);
-            // echo '</pre>';
-            // exit();
-
-            // Using transaction query, if one group query fails all group will rolled back
-            $this->db->transStart(); // Start transaction query
+            $this->db->transStart();
             if (!isset($input_data['user'])) { // jika belum login
                 $data_user = array(
                     'nama_user'     => $input_data['fname'] . ' ' . $input_data['lname'],
@@ -219,29 +201,28 @@ class Booking extends BaseController
                     'pdf_url'       => $result_data['pdf_url'],
                 );
                 if ($result_data['payment_type'] == 'bank_transfer') {
-                    $data_bayar['via_bayar'] = $result_data['va_numbers'][0]['bank']; // Nama Bank
-                    $data_bayar['via_nomor'] = $result_data['va_numbers'][0]['va_number']; // Kode Pembayaran
+                    $data_bayar['via_bayar'] = $result_data['va_numbers'][0]['bank'];
+                    $data_bayar['via_nomor'] = $result_data['va_numbers'][0]['va_number'];
                 }
-                if ($result_data['payment_type'] == 'qris') { // Khusus Shopee Pay
+                if ($result_data['payment_type'] == 'qris') {
                     $data_bayar['via_bayar'] = 'shopee pay';
                 }
-                if ($result_data['payment_type'] == 'echannel') { // Khusus Bank Mandiri
-                    $data_bayar['via_bayar'] = $result_data['biller_code']; // Kode Perusahaan
-                    $data_bayar['via_nomor'] = $result_data['bill_key']; // Kode Pembayaran
+                if ($result_data['payment_type'] == 'echannel') {
+                    $data_bayar['via_bayar'] = $result_data['biller_code'];
+                    $data_bayar['via_nomor'] = $result_data['bill_key'];
                 }
-                if ($result_data['payment_type'] == 'cstore') { // Khusus Indomart/Alfamart
-                    $data_bayar['via_nomor'] = $result_data['payment_code']; // Kode Pembayaran
+                if ($result_data['payment_type'] == 'cstore') {
+                    $data_bayar['via_nomor'] = $result_data['payment_code'];
                 }
                 $m_bayar->save($data_bayar);
             }
 
-            $this->db->transComplete(); // Transaction complete
+            $this->db->transComplete();
 
-            if ($this->db->transStatus() === false) { // Error check
+            if ($this->db->transStatus() === false) {
                 $res = ['response' => false, 'alert' => "Gagal simpan data reservasi"];
                 echo json_encode($res);
             } else {
-                // $res = ['response' => true, 'alert' => "Berhasil simpan data reservasi"];
                 return redirect()->to('/landing/booking/result/' . encode($id_reservasi));
             }
         } else {
@@ -251,7 +232,6 @@ class Booking extends BaseController
 
     public function resultTrans($id)
     {
-        // $this->v_data['active']     = FALSE;
         $m_resv = new ReservasiModel();
         $m_detail = new ReservasiDetailModel();
 
